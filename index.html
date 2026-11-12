@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andreas Hasiholan Sinaga | IT Asset Management & Software Engineer</title>
+<meta name="description" content="Portfolio of Andreas Hasiholan Sinaga: IT asset management, stock opname, JIRA operations, software engineering, and accessibility research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- ===== LAUNCH PAGE ===== -->
+<section id="launch">
+  <div class="lang-switch launch-lang" role="group" aria-label="Language">
+    <button class="lang-btn" data-set="en" aria-pressed="true">EN</button>
+    <button class="lang-btn" data-set="id" aria-pressed="false">ID</button>
+  </div>
+  <h1 class="px">Andreas' Asset Warehouse</h1>
+  <canvas id="scene" width="320" height="140" aria-label="Pixel animation: a character carries a laptop to the warehouse shelves"></canvas>
+  <p id="hint" class="hint"></p>
+  <div class="bar"><i id="barfill"></i></div>
+  <button id="enter" class="launch-btn" hidden></button>
+  <button id="skip" class="skip"></button>
+</section>
+
+<!-- ===== SITE ===== -->
+<div id="site">
+  <nav class="nav" id="nav">
+    <a class="logo mono" href="#top">andreas</a>
+    <div class="nav-right">
+      <div class="links">
+        <a href="#tentang"><span data-lang="en">About</span><span data-lang="id">Tentang</span></a>
+        <a href="#ops"><span data-lang="en">Work</span><span data-lang="id">Pekerjaan</span></a>
+        <a href="#kerja"><span data-lang="en">Experience</span><span data-lang="id">Pengalaman</span></a>
+        <a href="#peta"><span data-lang="en">Asset Map</span><span data-lang="id">Peta Aset</span></a>
+        <a href="#riset"><span data-lang="en">Research</span><span data-lang="id">Riset</span></a>
+        <a href="#kontak"><span data-lang="en">Contact</span><span data-lang="id">Kontak</span></a>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn" data-set="en" aria-pressed="true">EN</button>
+        <button class="lang-btn" data-set="id" aria-pressed="false">ID</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero wrap" id="top">
+    <div class="hero-text">
+      <p class="mono tag">Jakarta, Indonesia</p>
+      <h2 class="big"><span class="first">Andreas</span> Hasiholan Sinaga</h2>
+      <p class="role mono"><span id="typed"></span><i class="caret"></i></p>
+      <p class="lead">
+        <span data-lang="en">Computer Engineering graduate who manages IT assets in banking and builds apps on the side.</span>
+        <span data-lang="id">Lulusan Computer Engineering yang mengurus aset IT di industri perbankan, dan membangun aplikasi di sela-selanya.</span>
+      </p>
+      <div class="cta">
+        <a class="btn" href="#ops"><span data-lang="en">See my work</span><span data-lang="id">Lihat pekerjaan</span></a>
+        <button class="btn ghost copy-btn" id="copy" data-email="sinagaandreas95@gmail.com"></button>
+      </div>
+    </div>
+    <div class="term" aria-label="Terminal animation">
+      <div class="term-bar"><i></i><i></i><i></i><span class="mono">stock-opname</span></div>
+      <div class="term-body mono" id="termbody"></div>
+    </div>
+  </header>
+
+  <section class="wrap stats">
+    <div class="rv"><b data-n="1200">0</b><span><span data-lang="en">IT assets validated for auction</span><span data-lang="id">aset IT divalidasi untuk lelang</span></span></div>
+    <div class="rv"><b data-n="5">0</b><span><span data-lang="en">years of software data reconciled (2021–2026)</span><span data-lang="id">tahun data software direkonsiliasi (2021–2026)</span></span></div>
+    <div class="rv"><b data-n="2">0</b><span><span data-lang="en">IEEE papers</span><span data-lang="id">paper IEEE</span></span></div>
+    <div class="rv"><b data-n="1">0</b><span><span data-lang="en">patent registered</span><span data-lang="id">paten terdaftar</span></span></div>
+  </section>
+
+  <section id="tentang" class="wrap rv">
+    <p class="kicker mono">// about</p>
+    <h3 class="h2"><span data-lang="en">From code to inventory, and back.</span><span data-lang="id">Dari kode ke inventaris, dan sebaliknya.</span></h3>
+    <p class="lead">
+      <span data-lang="en">Computer Engineering graduate from Telkom University (minor in Data Science, GPA 3.61/4.00). I work with asset inventory, data validation, audit support, and JIRA-based IT service in banking. I also build web and mobile apps with Python, PHP, MySQL, and Dart.</span>
+      <span data-lang="id">Lulusan Computer Engineering Telkom University (minor Data Science, IPK 3,61/4,00). Saya terbiasa dengan inventaris aset, validasi data, dukungan audit, dan layanan IT berbasis JIRA di perbankan. Saya juga membangun aplikasi web dan mobile dengan Python, PHP, MySQL, dan Dart.</span>
+    </p>
+  </section>
+
+  <section id="ops" class="wrap">
+    <p class="kicker mono">// daily work</p>
+    <h3 class="h2"><span data-lang="en">Five things I run at Danamon.</span><span data-lang="id">Lima hal yang saya kerjakan di Danamon.</span></h3>
+    <div class="ops rv">
+      <div class="tabs" role="tablist" aria-label="Responsibilities">
+        <button class="tab" role="tab" data-i="0" aria-selected="true"><span class="mono">01</span><span>Stock Opname</span></button>
+        <button class="tab" role="tab" data-i="1" aria-selected="false"><span class="mono">02</span><span data-lang="en">Inventory & Stock Card</span><span data-lang="id">Inventaris & Stock Card</span></button>
+        <button class="tab" role="tab" data-i="2" aria-selected="false"><span class="mono">03</span><span data-lang="en">Asset Auction</span><span data-lang="id">Lelang Aset</span></button>
+        <button class="tab" role="tab" data-i="3" aria-selected="false"><span class="mono">04</span><span data-lang="en">Data Integrity</span><span data-lang="id">Integritas Data</span></button>
+        <button class="tab" role="tab" data-i="4" aria-selected="false"><span class="mono">05</span><span>JIRA & SLA</span></button>
+      </div>
+      <div class="panel" role="tabpanel">
+        <h4 id="ptitle"></h4>
+        <p id="pdesc" class="lead"></p>
+        <div id="viz" class="viz"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kerja" class="wrap">
+    <p class="kicker mono">// experience</p>
+    <h3 class="h2"><span data-lang="en">Work timeline</span><span data-lang="id">Timeline kerja</span></h3>
+    <div class="timeline">
+      <article class="card rv">
+        <time class="mono"><span data-lang="en">May 2026 – Present</span><span data-lang="id">Mei 2026 – sekarang</span></time>
+        <h4><span data-lang="en">IT Assets Management (Contract)</span><span data-lang="id">IT Assets Management (Kontrak)</span></h4>
+        <p class="org">PT Bank Danamon Indonesia Tbk · Jakarta</p>
+        <p><span data-lang="en">Five core responsibilities: stock opname, inventory, auction support, data integrity, and JIRA ticket handling.</span><span data-lang="id">Lima tanggung jawab utama: stock opname, inventaris, dukungan lelang, integritas data, dan penanganan tiket JIRA.</span></p>
+      </article>
+      <article class="card rv">
+        <time class="mono"><span data-lang="en">Nov 2025 – May 2026</span><span data-lang="id">Nov 2025 – Mei 2026</span></time>
+        <h4><span data-lang="en">IT Assets Management Intern</span><span data-lang="id">IT Assets Management Intern</span></h4>
+        <p class="org">PT Bank Danamon Indonesia Tbk</p>
+        <ul>
+          <li><span data-lang="en">Built a Stock Card Application to digitize backup inventory, replacing manual tracking.</span><span data-lang="id">Membangun Stock Card Application untuk mendigitalkan inventaris backup, menggantikan pencatatan manual.</span></li>
+          <li><span data-lang="en">Software stock opname and data reconciliation for 2021–2026.</span><span data-lang="id">Stock opname software dan rekonsiliasi data 2021–2026.</span></li>
+          <li><span data-lang="en">Hardware stock opname for auction preparation, validating about 1,200 IT assets.</span><span data-lang="id">Stock opname hardware untuk lelang, memvalidasi sekitar 1.200 aset IT.</span></li>
+        </ul>
+      </article>
+      <article class="card rv">
+        <time class="mono"><span data-lang="en">Jul – Aug 2024</span><span data-lang="id">Jul – Agu 2024</span></time>
+        <h4><span>Software Engineer Intern</span></h4>
+        <p class="org">Kantor Pelayanan Pajak Madya Medan</p>
+        <ul>
+          <li><span data-lang="en">Built a web survey application (PHP, MySQL, Bootstrap) with role-based authentication.</span><span data-lang="id">Aplikasi survei web (PHP, MySQL, Bootstrap) dengan autentikasi berbasis peran.</span></li>
+          <li><span data-lang="en">Input validation, testing, debugging, and technical documentation.</span><span data-lang="id">Validasi input, testing, debugging, dan dokumentasi teknis.</span></li>
+        </ul>
+      </article>
+      <article class="card rv">
+        <time class="mono"><span data-lang="en">Dec 2024 – Sep 2025</span><span data-lang="id">Des 2024 – Sep 2025</span></time>
+        <h4><span data-lang="en">Secretary & Treasurer, Kesma</span><span data-lang="id">Sekretaris & Bendahara Kesma</span></h4>
+        <p class="org">Himpunan Mahasiswa Teknik Komputer, Telkom University</p>
+        <ul>
+          <li><span data-lang="en">Organizational administration, meeting minutes, and correspondence.</span><span data-lang="id">Administrasi organisasi, notulen, dan korespondensi.</span></li>
+          <li><span data-lang="en">Budgeting and financial reporting for student programs.</span><span data-lang="id">Perencanaan anggaran dan laporan keuangan program mahasiswa.</span></li>
+        </ul>
+      </article>
+      <article class="card rv">
+        <time class="mono"><span data-lang="en">Nov 2023 – Oct 2024</span><span data-lang="id">Nov 2023 – Okt 2024</span></time>
+        <h4><span data-lang="en">Logistics Staff & Teaching Volunteer</span><span data-lang="id">Logistics Staf & Relawan Mengajar</span></h4>
+        <p class="org">CONNECTION, SDN Cihanjaro</p>
+        <ul>
+          <li><span data-lang="en">Logistics and teaching sessions for a community service program.</span><span data-lang="id">Logistik dan sesi mengajar di program pengabdian masyarakat.</span></li>
+          <li><span data-lang="en">Supported digitalization workshops for elementary school students.</span><span data-lang="id">Mendukung workshop digitalisasi untuk siswa sekolah dasar.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="debrief" class="wrap rv">
+    <p class="kicker mono"><span data-lang="en">// asset cabinet</span><span data-lang="id">// lemari asset</span></p>
+    <h3 class="h2"><span data-lang="en">My work, filed like IT assets.</span><span data-lang="id">Karya saya, diarsipkan seperti aset IT.</span></h3>
+    <p class="lead"><span data-lang="en">Open a drawer to see what's inside.</span><span data-lang="id">Buka laci untuk melihat isinya.</span></p>
+
+    <div class="cabinet" id="cabinet">
+      <div class="cab-plate mono"><span data-lang="en">ITFC · ASSET CABINET · A1–A4</span><span data-lang="id">ITFC · LEMARI ASSET · A1–A4</span></div>
+
+      <div class="drawer" data-d="0">
+        <button class="drawer-head" aria-expanded="false" aria-controls="dr0">
+          <span class="pix" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="3" y="3" width="10" height="7" fill="#8fa3b3"/><rect x="4" y="4" width="8" height="5" fill="#16222e"/><rect class="scr" x="5" y="5" width="2" height="1" fill="#c9a45c"/><rect x="1" y="11" width="14" height="2" fill="#5b6e7e"/></svg>
+          </span>
+          <span class="dmeta"><span class="dlabel mono">A1</span><span class="dtitle"><span data-lang="en">Final Debrief</span><span data-lang="id">Debrief Akhir</span></span></span>
+          <span class="dcount mono"><span data-lang="en">1 file</span><span data-lang="id">1 berkas</span></span>
+          <span class="handle" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-body" id="dr0"><div class="drawer-inner">
+          <p><span data-lang="en">Full debrief of my internship at Bank Danamon: stocktaking, JIRA tickets, delivery, stock opname, auction validation, and a digital stock card app.</span><span data-lang="id">Debrief lengkap magang di Bank Danamon: stocktaking, tiket JIRA, delivery, stock opname, validasi lelang, dan aplikasi digital stock card.</span></p>
+          <a class="btn-sm" href="debrief.html"><span data-lang="en">Open debrief →</span><span data-lang="id">Buka debrief →</span></a>
+        </div></div>
+      </div>
+
+      <div class="drawer" data-d="1">
+        <button class="drawer-head" aria-expanded="false" aria-controls="dr1">
+          <span class="pix" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="3" y="2" width="10" height="4" fill="#5b6e7e"/><rect x="3" y="7" width="10" height="4" fill="#5b6e7e"/><rect x="3" y="12" width="10" height="2" fill="#5b6e7e"/><rect class="led" x="5" y="3" width="1" height="1" fill="#6f8a55"/><rect class="led l2" x="5" y="8" width="1" height="1" fill="#6f8a55"/><rect class="led l3" x="5" y="13" width="1" height="1" fill="#b8582e"/><rect x="8" y="3" width="4" height="1" fill="#16222e"/><rect x="8" y="8" width="4" height="1" fill="#16222e"/></svg>
+          </span>
+          <span class="dmeta"><span class="dlabel mono">A2</span><span class="dtitle"><span data-lang="en">Papers & Patent</span><span data-lang="id">Paper & Paten</span></span></span>
+          <span class="dcount mono"><span data-lang="en">3 files</span><span data-lang="id">3 berkas</span></span>
+          <span class="handle" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-body" id="dr1"><div class="drawer-inner">
+          <p><span data-lang="en">Two IEEE papers on color vision deficiency and one registered patent, Color AID.</span><span data-lang="id">Dua paper IEEE tentang color vision deficiency dan satu paten terdaftar, Color AID.</span></p>
+          <a class="btn-sm" href="works.html?type=paper"><span data-lang="en">Open papers →</span><span data-lang="id">Buka paper →</span></a>
+        </div></div>
+      </div>
+
+      <div class="drawer" data-d="2">
+        <button class="drawer-head" aria-expanded="false" aria-controls="dr2">
+          <span class="pix" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="2" y="2" width="12" height="9" fill="#8fa3b3"/><rect x="3" y="3" width="10" height="7" fill="#16222e"/><rect class="scr" x="5" y="4" width="4" height="1" fill="#c9a45c"/><rect x="7" y="11" width="2" height="2" fill="#5b6e7e"/><rect x="5" y="13" width="6" height="1" fill="#5b6e7e"/></svg>
+          </span>
+          <span class="dmeta"><span class="dlabel mono">A3</span><span class="dtitle"><span data-lang="en">Thesis</span><span data-lang="id">Skripsi</span></span></span>
+          <span class="dcount mono"><span data-lang="en">1 file</span><span data-lang="id">1 berkas</span></span>
+          <span class="handle" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-body" id="dr2"><div class="drawer-inner">
+          <p><span data-lang="en">My bachelor thesis in Computer Engineering, Telkom University.</span><span data-lang="id">Skripsi S1 Computer Engineering, Telkom University.</span></p>
+          <a class="btn-sm" href="works.html?type=skripsi"><span data-lang="en">Open thesis →</span><span data-lang="id">Buka skripsi →</span></a>
+        </div></div>
+      </div>
+
+      <div class="drawer" data-d="3">
+        <button class="drawer-head" aria-expanded="false" aria-controls="dr3">
+          <span class="pix" aria-hidden="true">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="1" y="5" width="6" height="2" fill="#8a6a43"/><rect x="1" y="7" width="9" height="6" fill="#c9a45c"/><rect x="5" y="3" width="6" height="2" fill="#b8582e"/><rect x="5" y="5" width="10" height="8" fill="#b8582e"/><rect x="6" y="7" width="8" height="1" fill="#7d3a1c"/><rect x="6" y="9" width="5" height="1" fill="#7d3a1c"/></svg>
+          </span>
+          <span class="dmeta"><span class="dlabel mono">A4</span><span class="dtitle"><span data-lang="en">Assignments</span><span data-lang="id">Tugas</span></span></span>
+          <span class="dcount mono"><span data-lang="en">course projects</span><span data-lang="id">proyek kuliah</span></span>
+          <span class="handle" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-body" id="dr3"><div class="drawer-inner">
+          <p><span data-lang="en">Course projects from Telkom University, including data and software work.</span><span data-lang="id">Proyek mata kuliah di Telkom University, termasuk pekerjaan data dan software.</span></p>
+          <a class="btn-sm" href="works.html?type=tugas"><span data-lang="en">Open assignments →</span><span data-lang="id">Buka tugas →</span></a>
+        </div></div>
+      </div>
+
+      <div class="cab-base mono" aria-hidden="true">▲ ▲ ▲</div>
+    </div>
+  </section>
+
+  <section id="peta" class="wrap">
+    <p class="kicker mono">// asset map</p>
+    <h3 class="h2"><span data-lang="en">Assets spread across far-apart sites.</span><span data-lang="id">Aset yang saya urus tersebar jauh-jauh.</span></h3>
+    <p class="lead"><span data-lang="en">Click a pin to see the work at each location. The little truck keeps driving around.</span><span data-lang="id">Klik pin untuk melihat jenis tugas di tiap lokasi. Truk kecil itu terus berkeliling.</span></p>
+    <div class="mapbox">
+      <svg id="map" viewBox="0 0 400 200" shape-rendering="crispEdges" role="img" aria-label="Pixel map of asset locations">
+        <rect width="400" height="200" fill="#122232"/>
+        <g class="waves" fill="#1d3447"><rect x="20" y="20" width="16" height="3"/><rect x="300" y="170" width="20" height="3"/><rect x="60" y="150" width="14" height="3"/><rect x="340" y="30" width="16" height="3"/></g>
+        <g fill="#4d6640" stroke="#35472b" stroke-width="3">
+          <polygon points="40,70 90,60 150,75 170,95 130,110 70,105"/>
+          <polygon points="180,100 240,95 290,110 270,130 210,135"/>
+          <polygon points="250,45 320,40 360,60 340,85 280,80"/>
+          <polygon points="300,120 360,115 375,140 330,150"/>
+        </g>
+        <path d="M95,85 L215,115 L295,62 L340,130 L95,85" fill="none" stroke="#c9a45c" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6"/>
+        <g><rect x="-7" y="-5" width="9" height="7" fill="#b8582e"/><rect x="2" y="-3" width="5" height="5" fill="#c9a45c"/><rect x="-5" y="2" width="3" height="3" fill="#122232"/><rect x="2" y="2" width="3" height="3" fill="#122232"/>
+          <animateMotion dur="14s" repeatCount="indefinite" path="M95,85 L215,115 L295,62 L340,130 L95,85"/></g>
+        <g class="pin" data-t-en="Head Office" data-t-id="Kantor Pusat" data-d-en="Dataset validation, audit documentation, and auction preparation." data-d-id="Validasi dataset, dokumentasi audit, dan persiapan lelang." transform="translate(95 85)"><rect x="-4" y="-18" width="8" height="8" fill="#b8582e"/><rect x="-2" y="-10" width="4" height="6" fill="#b8582e"/></g>
+        <g class="pin" data-t-en="Regional Office" data-t-id="Kantor Regional" data-d-en="Physical stock opname and matching against inventory records." data-d-id="Stock opname fisik dan pencocokan dengan catatan inventaris." transform="translate(215 115)"><rect x="-4" y="-18" width="8" height="8" fill="#c9a45c"/><rect x="-2" y="-10" width="4" height="6" fill="#c9a45c"/></g>
+        <g class="pin" data-t-en="Branch Network" data-t-id="Jaringan Cabang" data-d-en="Asset verification at branches, then auction administration." data-d-id="Verifikasi aset di cabang, lalu administrasi lelang." transform="translate(295 62)"><rect x="-4" y="-18" width="8" height="8" fill="#b8582e"/><rect x="-2" y="-10" width="4" height="6" fill="#b8582e"/></g>
+        <g class="pin" data-t-en="Remote Branch" data-t-id="Cabang Jauh" data-d-en="Data submission, JIRA tickets, and hardware replacement within SLA." data-d-id="Pengiriman data, tiket JIRA, dan penggantian hardware sesuai SLA." transform="translate(340 130)"><rect x="-4" y="-18" width="8" height="8" fill="#c9a45c"/><rect x="-2" y="-10" width="4" height="6" fill="#c9a45c"/></g>
+      </svg>
+      <div id="pinfo" class="pinfo"><b></b><span></span></div>
+    </div>
+  </section>
+
+  <section id="riset" class="wrap">
+    <p class="kicker mono">// research & patent</p>
+    <h3 class="h2"><span data-lang="en">Accessibility and color.</span><span data-lang="id">Aksesibilitas dan warna.</span></h3>
+    <div class="grid">
+      <article class="card rv"><time class="mono">IEEE · Mar 2026</time><h4>Bridging Accessibility Gaps</h4><p><span data-lang="en">A color detection app with real-time voice feedback for Colour Vision Deficiency. 90–96% accuracy and an 81.6% user satisfaction score.</span><span data-lang="id">Aplikasi deteksi warna dengan suara real-time untuk Colour Vision Deficiency. Akurasi 90–96% dan kepuasan pengguna 81,6%.</span></p></article>
+      <article class="card rv"><time class="mono">IEEE · Feb 2026</time><h4>Continuous CVD Severity Simulation</h4><p><span data-lang="en">A continuous CVD simulation based on Machado's LMS-RGB transformation, evaluated with CIEDE2000.</span><span data-lang="id">Simulasi CVD kontinu berbasis transformasi LMS-RGB Machado, dievaluasi dengan CIEDE2000.</span></p></article>
+      <article class="card rv"><time class="mono"><span data-lang="en">Patent · Aug 2025</span><span data-lang="id">Paten · Agu 2025</span></time><h4>Color AID</h4><p><span data-lang="en">A mobile app that helps people with color blindness with real-time color detection and color vision tests.</span><span data-lang="id">Aplikasi mobile untuk penyandang buta warna lewat deteksi warna real-time dan tes buta warna.</span></p></article>
+      <article class="card rv"><time class="mono"><span data-lang="en">Certification · Sep 2025</span><span data-lang="id">Sertifikasi · Sep 2025</span></time><h4>Data Analysis Fullstack Bootcamp</h4><p><span data-lang="en">MySkill, Batch 24. Presented at ICATEI 2025 and BTS-I2C 2025.</span><span data-lang="id">MySkill, Batch 24. Presentasi di ICATEI 2025 dan BTS-I2C 2025.</span></p></article>
+    </div>
+    <p class="kicker mono sub">// skills</p>
+    <div class="chips rv"><span>Python</span><span>SQL</span><span>Dart</span><span>PHP</span><span>MySQL</span><span>Machine Learning</span><span>EDA</span><span>Power BI</span><span>Tableau</span><span>Excel</span><span>Jira</span><span>UML · ERD · DFD</span></div>
+  </section>
+
+  <footer id="kontak" class="foot">
+    <div class="wrap foot-top">
+      <div class="foot-brand">
+        <p class="foot-big">
+          <span data-lang="en">Let's build something accountable.</span>
+          <span data-lang="id">Ayo bangun sesuatu yang bisa dipertanggungjawabkan.</span>
+        </p>
+        <p class="avail"><i></i>
+          <span data-lang="en">Open to new opportunities</span>
+          <span data-lang="id">Terbuka untuk peluang baru</span>
+        </p>
+        <p class="mono clock"><span id="clock"></span> · Jakarta</p>
+      </div>
+      <div class="foot-col">
+        <h6 class="mono">Explore</h6>
+        <a href="#tentang"><span data-lang="en">About</span><span data-lang="id">Tentang</span></a>
+        <a href="#ops"><span data-lang="en">Work</span><span data-lang="id">Pekerjaan</span></a>
+        <a href="#kerja"><span data-lang="en">Experience</span><span data-lang="id">Pengalaman</span></a>
+        <a href="#peta"><span data-lang="en">Asset Map</span><span data-lang="id">Peta Aset</span></a>
+        <a href="#riset"><span data-lang="en">Research</span><span data-lang="id">Riset</span></a>
+        <a href="debrief.html"><span data-lang="en">Internship Debrief</span><span data-lang="id">Debrief Magang</span></a>
+        <a href="works.html"><span data-lang="en">All Works</span><span data-lang="id">Semua Karya</span></a>
+      </div>
+      <div class="foot-col">
+        <h6 class="mono">Contact</h6>
+        <a href="mailto:sinagaandreas95@gmail.com">sinagaandreas95@gmail.com</a>
+        <a href="tel:+6281279641451">+62 812-7964-1451</a>
+        <a href="https://www.linkedin.com/in/andreassinaga" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span class="mono">© 2026 Frida Putriassa with love.</span>
+            <a href="#top" class="totop mono"><span data-lang="en">Back to top ↑</span><span data-lang="id">Kembali ke atas ↑</span></a>
+    </div>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

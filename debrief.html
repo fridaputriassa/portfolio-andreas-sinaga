@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internship Debrief · ITFC Asset Management, Bank Danamon | Andreas Hasiholan Sinaga</title>
+<meta name="description" content="Final debrief of the IT Assets Management internship at ITFC Asset Division, Bank Danamon, MagangHub Batch 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1a24;--panel:#162536;--panel2:#1d3045;--steel:#2c4254;--khaki:#c9a45c;--rust:#b8582e;--cream:#ece3cf;--ink:#e6e1d3;--muted:#8ea0b0;--moss:#6f8a55}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ink);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--khaki);text-decoration:none}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--khaki);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+.kicker{color:var(--khaki);font-size:14px;margin-bottom:10px}
+.h2{font-size:clamp(26px,3.6vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.lead{max-width:64ch;font-size:17px;color:var(--muted)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.card{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:22px 24px;transition:border-color .3s}
+.card:hover{border-color:var(--khaki)}
+.card h4{font-size:18px;font-weight:700;margin-bottom:6px}
+.card p,.card li{font-size:15px;color:var(--ink)}
+.card ul{padding-left:18px}
+.card li{margin-bottom:4px}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--navy);background:var(--khaki);padding:3px 9px;border-radius:999px}
+.obj{display:flex;gap:14px;align-items:flex-start;background:var(--panel2);border:1px solid var(--steel);border-radius:8px;padding:16px 18px;margin-top:24px}
+.obj b{color:var(--khaki);font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;padding-top:2px}
+.obj span{font-size:15px}
+.nav{position:sticky;top:0;z-index:5;background:rgba(15,26,36,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--steel)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.nav a{color:var(--muted);font-size:15px}
+.nav a:hover{color:var(--ink)}
+.nav .logo{color:var(--khaki);font-family:'JetBrains Mono',monospace;font-size:18px}
+.hero{padding:90px 0 70px;border-bottom:1px solid var(--steel);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 79px,rgba(201,164,92,.05) 79px 80px);pointer-events:none}
+.hero h1{font-size:clamp(34px,5.5vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:14px 0 18px;max-width:18ch}
+.hero .sub{font-size:18px;color:var(--cream)}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.meta span{font-family:'JetBrains Mono',monospace;font-size:13px;border:1px solid var(--steel);border-radius:999px;padding:6px 14px;color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.kpis div{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:18px}
+.kpis b{display:block;font-size:30px;font-weight:700;color:var(--khaki);letter-spacing:-.02em}
+.kpis span{font-size:13px;color:var(--muted)}
+.grid8{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.grid8 .card{padding:18px}
+.grid8 .card h4{font-size:15.5px}
+.grid8 .card p{font-size:14px;color:var(--muted)}
+.num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--khaki);margin-bottom:8px;display:block}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:32px}
+.bulletlist{display:grid;gap:12px}
+.bulletlist div{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--ink);padding:12px 14px;background:var(--panel);border:1px solid var(--steel);border-radius:6px}
+.bulletlist div i{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--khaki);min-width:22px;padding-top:2px}
+
+/* JIRA */
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:24px 0}
+.flow button{background:var(--panel);border:1px solid var(--steel);color:var(--muted);padding:10px 14px;border-radius:6px;cursor:pointer;font-size:14px;transition:all .25s}
+.flow button:hover{color:var(--ink)}
+.flow button.on{background:var(--khaki);color:var(--navy);border-color:var(--khaki)}
+.flow .arr{color:var(--steel);font-family:'JetBrains Mono',monospace}
+.flow-note{background:var(--panel2);border-left:3px solid var(--khaki);padding:12px 16px;border-radius:4px;font-size:15px;min-height:56px;color:var(--ink)}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
+.kpi-row div{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:18px;text-align:left}
+.kpi-row b{display:block;font-size:34px;font-weight:700;color:var(--khaki);letter-spacing:-.02em}
+.kpi-row span{font-size:13px;color:var(--muted)}
+.chart{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:22px}
+.chart h5{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:18px}
+.bars{display:flex;align-items:flex-end;gap:18px;height:200px;border-bottom:1px solid var(--steel);padding:0 8px}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bars .fill{width:100%;background:var(--rust);border-radius:4px 4px 0 0;height:0;transition:height 1s cubic-bezier(.3,.7,.4,1)}
+.bars .fill.a{background:var(--khaki)}
+.bars .val{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cream);margin-bottom:6px}
+.bars .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+.types{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.types span{font-size:13px;border:1px solid var(--steel);border-radius:999px;padding:5px 12px}
+
+/* delivery */
+.dflow{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:28px 0;position:relative}
+.dflow button{position:relative;background:var(--panel);border:1px solid var(--steel);color:var(--muted);padding:18px 8px;text-align:center;cursor:pointer;font-size:13px;transition:all .25s;margin:0 -1px}
+.dflow button:first-child{border-radius:8px 0 0 8px}
+.dflow button:last-child{border-radius:0 8px 8px 0}
+.dflow button .mono{display:block;color:var(--khaki);font-size:12px;margin-bottom:6px}
+.dflow button.on{background:var(--khaki);color:var(--navy);z-index:1}
+.dflow button.on .mono{color:var(--navy)}
+.dflow-note{background:var(--panel2);border:1px solid var(--steel);border-radius:8px;padding:18px 20px;font-size:15.5px;min-height:70px}
+
+/* stock opname */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.two .card h4{color:var(--khaki);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;margin-bottom:14px}
+.two .card li{list-style:none;position:relative;padding-left:22px;margin-bottom:10px}
+.two .card li::before{content:"✓";position:absolute;left:0;color:var(--moss);font-family:'JetBrains Mono',monospace}
+.hl{color:var(--cream);font-weight:700}
+
+/* auction */
+.auc{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin:28px 0 14px;position:relative}
+.auc button{background:var(--panel);border:1px solid var(--steel);color:var(--muted);padding:14px 6px;cursor:pointer;font-size:12.5px;text-align:center;transition:all .25s;margin:0 -1px;min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.auc button:first-child{border-radius:8px 0 0 8px}
+.auc button:last-child{border-radius:0 8px 8px 0}
+.auc button .mono{color:var(--khaki);font-size:13px}
+.auc button.on{background:var(--khaki);color:var(--navy);z-index:1}
+.auc button.on .mono{color:var(--navy)}
+.auc-note{background:var(--panel2);border:1px solid var(--steel);border-radius:8px;padding:16px 20px;font-size:15px;min-height:64px;margin-bottom:20px}
+.decision{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.decision div{border-radius:8px;padding:18px 20px;font-size:15px;border:1px solid var(--steel)}
+.decision .ok{border-color:var(--moss)}
+.decision .no{border-color:var(--rust)}
+.decision h4{font-size:15px;margin-bottom:6px}
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.docs div{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:16px;font-size:14px}
+.docs b{display:block;color:var(--khaki);font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:4px}
+
+/* digital card */
+.toggle{display:inline-flex;border:1px solid var(--steel);border-radius:999px;padding:3px;background:var(--panel);margin-top:20px}
+.toggle button{background:none;border:0;color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:13px}
+.toggle button.on{background:var(--khaki);color:var(--navy)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.ba .card{min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.ba .card b{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--khaki);margin-bottom:8px}
+.ba .card.before{opacity:.75}
+.ba .card.after{border-color:var(--moss)}
+.feat{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.feat div{background:var(--panel2);border:1px solid var(--steel);border-radius:8px;padding:16px;font-size:14px}
+.feat b{display:block;color:var(--cream);font-size:15px;margin-bottom:4px}
+.stack{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.stack span{font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:6px 12px;border:1px solid var(--khaki);color:var(--khaki);border-radius:4px}
+
+/* skills & conclusion */
+.skills{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.skills div{background:var(--panel);border:1px solid var(--steel);border-radius:8px;padding:18px;transition:transform .25s,border-color .25s}
+.skills div:hover{transform:translateY(-4px);border-color:var(--khaki)}
+.skills b{display:block;font-size:15px;margin-bottom:6px}
+.skills span{font-size:13.5px;color:var(--muted)}
+.concl{background:var(--panel);border:1px solid var(--steel);border-radius:10px;padding:30px}
+.concl ol{list-style:none;display:grid;gap:14px;margin-top:18px}
+.concl li{display:flex;gap:14px;font-size:16px}
+.concl li::before{content:"";width:8px;min-width:8px;height:8px;background:var(--khaki);margin-top:9px;transform:rotate(45deg)}
+
+.foot{border-top:1px solid var(--steel);background:#0b141d;padding:54px 0 34px}
+.foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.foot p{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.foot a.back{font-family:'JetBrains Mono',monospace;font-size:14px;border:1px solid var(--khaki);color:var(--khaki);padding:10px 16px;border-radius:4px}
+.foot a.back:hover{background:var(--khaki);color:var(--navy)}
+.foot small{display:block;color:var(--muted);font-size:13px;margin-top:10px}
+
+@media(max-width:860px){.kpis,.grid8,.feat,.skills{grid-template-columns:1fr 1fr}.split,.two,.decision,.ba{grid-template-columns:1fr}.dflow,.auc{grid-template-columns:1fr 1fr 1fr;}.dflow button,.auc button{border-radius:8px!important;margin:0}.kpi-row{grid-template-columns:1fr}.docs{grid-template-columns:1fr}}
+@media(max-width:520px){.kpis,.grid8,.feat,.skills{grid-template-columns:1fr}.dflow,.auc{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+
+/* ---- polish ---- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--khaki),var(--rust));z-index:20}
+.toc{display:none}
+@media(min-width:1280px){
+  .toc{display:flex;flex-direction:column;gap:4px;position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:4}
+  .toc a{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);padding:4px 0;transition:color .2s}
+  .toc a i{width:6px;height:6px;border-radius:50%;border:1px solid var(--steel);transition:all .2s}
+  .toc a:hover{color:var(--ink)}
+  .toc a.act{color:var(--khaki)}
+  .toc a.act i{background:var(--khaki);border-color:var(--khaki)}
+}
+.hero h1{background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 60%,var(--khaki) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--khaki);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+.card:hover::after{transform:scaleY(1)}
+.kicker{letter-spacing:.02em}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.summary div{border-top:2px solid var(--khaki);padding:16px 4px 4px}
+.summary b{display:block;font-size:16px;margin-bottom:6px}
+.summary span{font-size:14px;color:var(--muted)}
+@media(max-width:860px){.summary{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<aside class="toc" aria-label="Sections">
+  <a href="#context" data-s="context"><i></i>Context</a>
+  <a href="#responsibilities" data-s="responsibilities"><i></i>Responsibilities</a>
+  <a href="#recording" data-s="recording"><i></i>Stocktaking</a>
+  <a href="#jira" data-s="jira"><i></i>JIRA tickets</a>
+  <a href="#delivery" data-s="delivery"><i></i>Delivery</a>
+  <a href="#stock" data-s="stock"><i></i>Stock opname</a>
+  <a href="#auction" data-s="auction"><i></i>Auction</a>
+  <a href="#card" data-s="card"><i></i>Digital card</a>
+  <a href="#skills" data-s="skills"><i></i>Skills</a>
+  <a href="#conclusion" data-s="conclusion"><i></i>Conclusion</a>
+</aside>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html">ash<span>_</span></a>
+    <a href="works.html">All works</a><a href="index.html#kerja">← Portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="mono kicker">// final debrief · MagangHub Batch 2</p>
+    <h1>ITFC Asset Management Internship</h1>
+    <p class="sub">IT Assets Management Intern at the ITFC Asset Division, PT Bank Danamon Indonesia Tbk, Jakarta.</p>
+    <div class="meta">
+      <span>Nov 2025 – May 2026</span>
+      <span>Falatehan & BSD warehouses</span>
+      <span>IT asset · inventory · auction · JIRA</span>
+    </div>
+    <div class="kpis rv">
+      <div><b>230</b><span>incoming JIRA tickets (Jan – present)</span></div>
+      <div><b>~300</b><span>hardware IT assets checked at the BSD warehouse</span></div>
+      <div><b>7</b><span>steps in the auction validation process</span></div>
+      <div><b>1</b><span>digital inventory card app built on Power Platform</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="ringkas-wrap" style="padding:60px 0 0"><div class="wrap">
+  <div class="summary rv">
+    <div><b>What I did</b><span>Warehouse records, JIRA support, delivery, stock opname, and auction validation for the ITFC Asset team.</span></div>
+    <div><b>What I built</b><span>A digital inventory card app with Power Apps and Power Automate to replace paper stock cards.</span></div>
+    <div><b>What I learned</b><span>How IT asset workflows run end to end, and how accuracy and coordination keep them on track.</span></div>
+  </div>
+</div></section>
+<section id="context">
+  <div class="wrap">
+    <p class="mono kicker rv">// context</p>
+    <h2 class="h2 rv">Where the internship sat</h2>
+    <div class="split rv">
+      <div class="card">
+        <h4>About the ITFC Division</h4>
+        <p>The IT Financial Control (ITFC) Division is responsible for managing and controlling Bank Danamon's IT financial data and IT assets, to ensure accuracy, security, efficiency, and compliance with internal policies and regulatory requirements.</p>
+      </div>
+      <div class="card">
+        <h4>My role within ITFC</h4>
+        <p>I worked with the ITFC Asset team, which manages IT assets, inventory documentation, and asset-related processes. My focus was asset recording, JIRA ticket handling, delivery, stock opname, auction validation, and building a digital inventory tool.</p>
+      </div>
+    </div>
+    <div class="bulletlist rv" style="margin-top:14px">
+      <div><i>01</i>Ensure accuracy and reliability of IT financial data.</div>
+      <div><i>02</i>Manage and maintain IT assets and inventory.</div>
+      <div><i>03</i>Support budgeting, reporting, and cost control.</div>
+      <div><i>04</i>Ensure compliance with internal policies and regulations.</div>
+    </div>
+  </div>
+</section>
+
+<section id="responsibilities" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// job responsibilities</p>
+    <h2 class="h2 rv">Eight areas of work</h2>
+    <p class="lead rv">Support for the ITFC Asset team in managing, controlling, and maintaining IT assets, so that data stays accurate, processes run smoothly, and asset management is reliable.</p>
+    <div class="grid8 rv">
+      <div class="card"><span class="num">01</span><h4>Recording & Stocktaking</h4><p>Recording and stocktaking at the Falatehan and BSD warehouses.</p></div>
+      <div class="card"><span class="num">02</span><h4>Handling JIRA Tickets</h4><p>Incoming tickets and support for the asset management process.</p></div>
+      <div class="card"><span class="num">03</span><h4>Asset Delivery</h4><p>Delivering asset devices to the work unit or branch that needs them.</p></div>
+      <div class="card"><span class="num">04</span><h4>Auction Validation</h4><p>Assisting with the auction validation process and its reports.</p></div>
+      <div class="card"><span class="num">05</span><h4>Software Stock Opname</h4><p>Assisting with software stock opname for non-FAS assets.</p></div>
+      <div class="card"><span class="num">06</span><h4>Application Development</h4><p>Building an application to manage digital inventory cards for devices.</p></div>
+      <div class="card"><span class="num">07</span><h4>Data Validation</h4><p>Validating ITFC Asset data.</p></div>
+      <div class="card"><span class="num">08</span><h4>Proposal & Collaboration</h4><p>Working with the team and related units on the overall ITFC Asset process.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="recording" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 01 · recording & stocktaking</p>
+    <h2 class="h2 rv">Keeping warehouse records accurate</h2>
+    <div class="bulletlist rv" style="margin-top:24px">
+      <div><i>01</i>Recording and stocktaking activities at the Falatehan warehouse.</div>
+      <div><i>02</i>Updated stock cards and inventory data in Excel every month.</div>
+      <div><i>03</i>Printed and maintained stock cards for warehouse assets.</div>
+      <div><i>04</i>Scanned delivery documents, handover reports (BA Serah Terima), and warehouse activity logs.</div>
+      <div><i>05</i>Managed warehouse entry and exit logs for the Falatehan and BSD warehouses.</div>
+    </div>
+    <div class="obj rv"><b>OBJECTIVE</b><span>Keep inventory data accurate and up to date, make sure documentation is complete, and support effective warehouse management and control.</span></div>
+  </div>
+</section>
+
+<section id="jira" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 02 · incoming jira tickets</p>
+    <h2 class="h2 rv">Ticket handling, step by step</h2>
+    <p class="lead rv">Tickets move through four states. Pick a state to see what it means in this workflow.</p>
+    <div class="flow rv" id="jflow" role="tablist">
+      <button class="on" data-k="0">Ticket</button><span class="arr">→</span>
+      <button data-k="1">In Progress</button><span class="arr">→</span>
+      <button data-k="2">Pending</button><span class="arr">→</span>
+      <button data-k="3">Resolved</button>
+    </div>
+    <div class="flow-note rv" id="jnote">New request arrives in the queue and is reviewed.</div>
+
+    <div class="kpi-row rv">
+      <div><b>230</b><span>total incoming tickets, Jan – present</span></div>
+      <div><b>53</b><span>tickets handled by me (23%)</span></div>
+      <div><b>177</b><span>tickets not handled by me (77%)</span></div>
+    </div>
+
+    <div class="split rv" style="margin-top:0">
+      <div class="chart">
+        <h5>TICKET STATUS OVERVIEW</h5>
+        <div class="bars" id="bars">
+          <div><span class="val">88</span><div class="fill" data-h="88"></div><span class="lbl">In Progress</span></div>
+          <div><span class="val">56</span><div class="fill" data-h="56"></div><span class="lbl">Pending</span></div>
+          <div><span class="val">53</span><div class="fill a" data-h="53"></div><span class="lbl">Resolved</span></div>
+          <div><span class="val">53</span><div class="fill a" data-h="53"></div><span class="lbl">Others</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>Types of tickets handled</h4>
+        <p>Requests covered by the ITFC Asset queue:</p>
+        <div class="types">
+          <span>Hardware issues</span><span>Asset request</span><span>General request</span><span>Software license request</span><span>IT asset return request</span><span>IT asset write-off / disposal</span>
+        </div>
+        <p style="margin-top:16px;font-size:14px;color:var(--muted)">If a ticket is a software license request, I first check whether a license is available. If installation is needed, the case is escalated to the IT SDE team.</p>
+      </div>
+    </div>
+    <div class="obj rv"><b>OBJECTIVE</b><span>Handle and resolve JIRA tickets on time, improve user satisfaction, and support effective IT asset management.</span></div>
+  </div>
+</section>
+
+<section id="delivery" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 03 · asset delivery</p>
+    <h2 class="h2 rv">From the warehouse to the user</h2>
+    <p class="lead rv">Delivery runs from the Falatehan warehouse to BSD and branches. Select each step.</p>
+    <div class="dflow rv" id="dflow">
+      <button class="on" data-k="0"><span class="mono">01</span>Prepare & pack assets</button>
+      <button data-k="1"><span class="mono">02</span>Prepare documents</button>
+      <button data-k="2"><span class="mono">03</span>Deliver to BSD / branches</button>
+      <button data-k="3"><span class="mono">04</span>Inform user</button>
+      <button data-k="4"><span class="mono">05</span>Confirm receipt</button>
+      <button data-k="5"><span class="mono">06</span>Document distribution</button>
+    </div>
+    <div class="dflow-note rv" id="dnote">Pack the IT assets carefully so they are ready for the delivery process.</div>
+    <div class="obj rv"><b>OBJECTIVE</b><span>Make sure IT assets are distributed accurately, delivered on time, and properly documented until users confirm they have received them.</span></div>
+  </div>
+</section>
+
+<section id="stock" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 04 · stock opname</p>
+    <h2 class="h2 rv">Hardware and software stock opname</h2>
+    <div class="two">
+      <div class="card rv">
+        <h4>HARDWARE STOCK OPNAME</h4>
+        <ul>
+          <li>Assisted hardware stock opname at the <span class="hl">BSD Asset Warehouse</span>.</li>
+          <li>Checked and verified about <span class="hl" style="color:var(--khaki)">300 IT assets</span> handed over to ITFC Asset.</li>
+          <li>Validated serial numbers and asset data against the inventory list.</li>
+          <li>Made sure asset information matched the physical devices.</li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h4>SOFTWARE STOCK OPNAME</h4>
+        <ul>
+          <li>Created master data for the software stock opname activity.</li>
+          <li>Conducted software stock opname with two user areas.</li>
+          <li>Validated software inventory data with the related users.</li>
+          <li>Prepared BA validation documents once the stock opname was complete.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="auction" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 05 · auction validation</p>
+    <h2 class="h2 rv">From asset list to auction</h2>
+    <p class="lead rv">This is the hardware path from a user's request to asset disposal. Select a step to see what happens.</p>
+    <div class="auc rv" id="auc">
+      <button class="on" data-k="0"><span class="mono">1</span>User submits asset list</button>
+      <button data-k="1"><span class="mono">2</span>Asset validation</button>
+      <button data-k="2"><span class="mono">3</span>BA validation signed</button>
+      <button data-k="3"><span class="mono">4</span>Confirm with GH teams</button>
+      <button data-k="4"><span class="mono">5</span>Auction memo created</button>
+      <button data-k="5"><span class="mono">6</span>Memo sent to FAD</button>
+      <button data-k="6"><span class="mono">7</span>Auction executed</button>
+    </div>
+    <div class="auc-note rv" id="anote">The user provides the list of assets to be auctioned.</div>
+    <div class="decision rv">
+      <div class="ok"><h4>Still usable</h4><p>The asset goes back to inventory.</p></div>
+      <div class="no"><h4>Not usable</h4><p>The asset moves forward to the auction process.</p></div>
+    </div>
+    <p class="mono" style="font-size:12px;color:var(--muted);margin:24px 0 0">CONFIRMATION WITH GH TEAM</p>
+    <div class="docs rv">
+      <div><b>GH IT VOICE</b>Confirms whether voice assets are still usable.</div>
+      <div><b>GH IT NETWORK</b>Confirms whether network assets are still usable.</div>
+      <div><b>GH IT TECHSUP / ATM</b>Confirms whether server and ATM assets are still usable.</div>
+    </div>
+    <div class="docs rv">
+      <div><b>KEY DOCUMENT</b>Asset list for auction, provided by the user.</div>
+      <div><b>KEY DOCUMENT</b>BA Validation, signed by the user.</div>
+      <div><b>KEY DOCUMENT</b>Auction memo, submitted to the FAD Division.</div>
+    </div>
+    <div class="obj rv"><b>MY PART</b><span>Reviewed and verified auction validation documents and asset lists, checked asset data against physical assets and supporting documents, prepared BA validation, and coordinated with related teams.</span></div>
+  </div>
+</section>
+
+<section id="card" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// 06 · digital inventory card</p>
+    <h2 class="h2 rv">A digital stock card application</h2>
+    <p class="lead rv">Built with Power Apps and Power Automate to replace paper stock cards. Switch the view to compare.</p>
+    <div class="toggle rv" id="ptoggle">
+      <button class="on" data-v="before">Before</button>
+      <button data-v="after">After</button>
+    </div>
+    <div class="ba rv">
+      <div class="card before" id="cardA"><b>BEFORE</b><h4>Manual stock card</h4><p>Paper stock cards tracked asset movements by hand, with more room for error and slower reporting.</p></div>
+      <div class="card" id="cardB"><b>AFTER</b><h4>Digital inventory card</h4><p>Asset movements are recorded digitally with real-time monitoring, centralized data, and automated tasks.</p></div>
+    </div>
+    <div class="feat rv">
+      <div><b>Asset Masuk</b>Record and manage incoming assets.</div>
+      <div><b>Asset Keluar</b>Record and manage outgoing assets.</div>
+      <div><b>Manage User</b>Control application users and access roles.</div>
+      <div><b>Dashboard</b>Real-time summary of asset data and inventory status.</div>
+      <div><b>Export</b>Export inventory data for reporting and analysis.</div>
+    </div>
+    <div class="stack rv"><span>Power Apps</span><span>Power Automate</span><span>Digital stock card</span></div>
+  </div>
+</section>
+
+<section id="skills" style="padding-top:0">
+  <div class="wrap">
+    <p class="mono kicker rv">// skills & experience</p>
+    <h2 class="h2 rv">What I gained</h2>
+    <div class="skills rv">
+      <div><b>Asset & Inventory Management</b><span>Managing IT assets and inventory processes accurately.</span></div>
+      <div><b>Data Validation & Documentation</b><span>Validating data, preparing documents, and keeping them complete.</span></div>
+      <div><b>Communication & Coordination</b><span>Coordinating with teams and users for smooth processes.</span></div>
+      <div><b>Problem Solving & Time Management</b><span>Finding root causes and handling tasks efficiently.</span></div>
+      <div><b>IT Asset Workflows</b><span>Understanding how IT asset management works end to end.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="conclusion" style="padding-top:0">
+  <div class="wrap">
+    <div class="concl rv">
+      <p class="mono kicker">// conclusion</p>
+      <h2 class="h2" style="font-size:26px">What this internship gave me</h2>
+      <ol>
+        <li>Practical experience in IT asset management and operational workflow.</li>
+        <li>Better collaboration and communication through teamwork and coordination.</li>
+        <li>Working professionally with responsibility, accuracy, and integrity in daily tasks.</li>
+        <li>Responsiveness in supporting users and handling operational requests.</li>
+        <li>Adaptability to new technologies, systems, and business processes in a dynamic work environment.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <p>Thanks for reading the debrief.</p>
+      <small>Andreas Hasiholan Sinaga · sinagaandreas95@gmail.com</small>
+    </div>
+    <a class="back" href="index.html">← Back to portfolio</a>
+  </div>
+</footer>
+
+<script>
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* bars grow when visible */
+const barIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){const max=100;e.target.querySelectorAll('.fill').forEach(f=>f.style.height=(f.dataset.h/max*100)+'%');barIO.disconnect()}
+}),{threshold:.3});
+barIO.observe(document.getElementById('bars'));
+
+/* JIRA flow */
+const JN=[
+  'A new request arrives in the queue and is reviewed.',
+  'The ticket is being worked on. Software license requests are checked for availability first.',
+  'Waiting on the user or another team before the ticket can continue.',
+  'The issue is closed and the user has been informed.'
+];
+document.querySelectorAll('#jflow button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#jflow button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById('jnote').textContent=JN[+b.dataset.k];
+}));
+
+/* delivery flow */
+const DN=[
+  'Pack the IT assets carefully so they are ready for the delivery process.',
+  'Prepare the delivery documents and handover forms.',
+  'Assist the delivery from the Falatehan warehouse to BSD and branches.',
+  'Inform the users or branches about the delivery status.',
+  'Confirm with users that the assets were received properly.',
+  'Document the asset distribution and handover process.'
+];
+document.querySelectorAll('#dflow button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#dflow button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById('dnote').textContent=DN[+b.dataset.k];
+}));
+
+/* auction flow */
+const AN=[
+  'The user provides the list of assets to be auctioned.',
+  'Asset data and supporting documents are validated against the physical assets.',
+  'The BA Validation is submitted to the user for signature.',
+  'GH teams confirm whether each asset is still usable. Usable assets go back to inventory; unusable ones continue to auction.',
+  'Assets that cannot be used are recorded in the auction memo.',
+  'The auction memo is sent to the FAD Division.',
+  'The FAD Division proceeds with the auction process.'
+];
+document.querySelectorAll('#auc button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#auc button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById('anote').textContent=AN[+b.dataset.k];
+}));
+
+/* before / after */
+document.querySelectorAll('#ptoggle button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#ptoggle button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  const after=b.dataset.v==='after';
+  document.getElementById('cardA').style.opacity=after?'.45':'.75';
+  document.getElementById('cardB').style.borderColor=after?'var(--moss)':'var(--steel)';
+  document.getElementById('cardB').style.transform=after?'scale(1.02)':'none';
+}));
+
+/* progress + active toc */
+const prog=document.getElementById('progress');
+const tocLinks=[...document.querySelectorAll('.toc a')];
+function onScroll(){
+  const h=document.documentElement;
+  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=s.id});
+  tocLinks.forEach(a=>a.classList.toggle('act',a.dataset.s===cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>
