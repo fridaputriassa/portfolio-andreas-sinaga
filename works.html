@@ -59,7 +59,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 <body>
 
 <nav class="nav"><div class="wrap">
-  <a class="logo" href="index.html">ash<span>_</span></a>
+  <a class="logo" href="index.html">andreas</a>
   <a href="index.html">← Portfolio</a>
 </div></nav>
 
@@ -88,9 +88,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   draft: true kalau entri masih perlu diisi (akan diberi tanda "draft")
 */
 const WORKS=[
-  {type:'paper',title:'Bridging Accessibility Gaps: A Mobile Color Detection App with Real-Time Voice Support for Colour Vision Deficiency',venue:'IEEE · ICATEI 2025',date:'Mar 2026',desc:'Mobile color detection for people with color vision deficiency. Real-time color recognition, text-to-speech feedback, and a color history. 90–96% color accuracy and an 81.6% user satisfaction score.',file:'files/paper-color-detection.pdf'},
-  {type:'paper',title:'Continuous Severity-Level Simulation of Color Vision Deficiency Using Interpolated LMS-RGB Transformation',venue:'IEEE · BTS-I2C 2025',date:'Feb 2026',desc:'A continuous CVD simulation based on Machado\'s LMS-RGB model, with smooth transitions across severity levels, evaluated with CIEDE2000.',file:'files/paper-cvd-simulation.pdf'},
-  {type:'skripsi',title:'[Judul skripsi kamu]',venue:'Telkom University · Computer Engineering',date:'2025',desc:'[Tulis ringkasan singkat skripsi di sini: masalah, metode, dan hasil utama.]',file:'files/skripsi.pdf',draft:true},
+  {type:'paper',title:'Bridging Accessibility Gaps: A Mobile Color Detection App with Real-Time Voice Support for Colour Vision Deficiency',venue:'IEEE · ICATEI 2025',date:'Mar 2026',desc:'Mobile color detection for people with color vision deficiency. Real-time color recognition, text-to-speech feedback, and a color history. 90–96% color accuracy and an 81.6% user satisfaction score.',link:'https://ieeexplore.ieee.org/document/11405405'},
+  {type:'paper',title:'Continuous Severity-Level Simulation of Color Vision Deficiency Using Interpolated LMS-RGB Transformation',venue:'IEEE · BTS-I2C 2025',date:'Feb 2026',desc:'A continuous CVD simulation based on Machado\'s LMS-RGB model, with smooth transitions across severity levels, evaluated with CIEDE2000.',link:'https://ieeexplore.ieee.org/document/11399518/metrics#metrics'},
+  {type:'skripsi',title:'Color Vision Problems in People with Color Vision Deficiency (CVD) in Everyday Color Identification',venue:'Telkom University · Computer Engineering',date:'2025',desc:'Bachelor thesis on how color vision deficiency affects everyday color identification, and the ColorAid app built to help people recognize colors more accurately.',file:'files/skripsi.pdf'},
   {type:'debrief',title:'ITFC Asset Management Internship: Final Debrief',venue:'MagangHub Batch 2 · Bank Danamon',date:'Nov 2025 – May 2026',desc:'Full debrief of my internship: warehouse stocktaking, JIRA tickets, asset delivery, stock opname, auction validation, and a digital stock card app.',link:'debrief.html'},
   {type:'tugas',title:'[Judul tugas: contoh Data Warehouse project]',venue:'Telkom University · [mata kuliah]',date:'[tahun]',desc:'[Tulis ringkasan singkat tugas ini: tujuan dan hal yang kamu kerjakan.]',file:'',draft:true}
 ];
@@ -112,7 +112,7 @@ function render(active){
   const list=WORKS.filter(w=>active==='all'||w.type===active);
   gridEl.innerHTML=list.map((w,i)=>{
     const href=w.link||w.file||'';
-    const action=href?`<a class="go" href="${href}" ${w.link?'':'target="_blank" rel="noopener"'}>${w.link?'Read →':'Open PDF ↗'}</a>`:`<span class="draft-badge">no file yet</span>`;
+    const action=href?`<a class="go" href="${href}" ${/^https?:/.test(href)||!w.link?'target="_blank" rel="noopener"':''}>${/^https?:/.test(href)?'View on IEEE ↗':w.link?'Read →':'Open PDF ↗'}</a>`:`<span class="draft-badge">no file yet</span>`;
     return `<article class="item ${w.type} ${w.draft?'draft':''}" style="animation-delay:${i*60}ms">
       <span class="type">${LABEL[w.type]}</span>
       <h3>${w.title}</h3>

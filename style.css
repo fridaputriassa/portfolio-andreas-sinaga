@@ -222,3 +222,43 @@ html[data-lang="id"] [data-lang="en"]{display:none!important}
 .big .first{position:relative;color:var(--khaki);display:inline-block;background:linear-gradient(transparent 62%,rgba(184,88,46,.35) 62%,rgba(184,88,46,.35) 92%,transparent 92%);padding:0 .08em;margin:0 -.04em;transition:transform .3s}
 .big .first:hover{transform:translateY(-2px)}
 .nav .logo{font-size:20px;letter-spacing:.02em}
+
+/* resume download button */
+.dl-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;text-decoration:none}
+.dl-btn>*{position:relative;z-index:1}
+.dl-fill{position:absolute!important;inset:0;z-index:0!important;background:var(--khaki);transform:scaleX(0);transform-origin:left}
+.dl-ico{overflow:visible}
+.dl-check{stroke-dasharray:24;stroke-dashoffset:24}
+.dl-btn[data-state=busy]{border-color:var(--khaki);color:var(--ink)}
+.dl-btn[data-state=busy] .dl-fill{animation:dlfill 1.1s cubic-bezier(.4,0,.2,1) forwards}
+.dl-btn[data-state=busy] .dl-arrow{animation:dlarrow .55s ease-in-out infinite}
+.dl-btn[data-state=done]{border-color:var(--khaki);color:var(--navy)}
+.dl-btn[data-state=done] .dl-fill{transform:scaleX(1);animation:dlpop .5s ease}
+.dl-btn[data-state=done] .dl-arrow,.dl-btn[data-state=done] .dl-tray{opacity:0}
+.dl-btn[data-state=done] .dl-check{animation:dlcheck .45s .05s ease forwards}
+@keyframes dlfill{to{transform:scaleX(1)}}
+@keyframes dlarrow{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@keyframes dlcheck{to{stroke-dashoffset:0}}
+@keyframes dlpop{0%{box-shadow:0 0 0 0 rgba(201,164,92,.55)}100%{box-shadow:0 0 0 14px rgba(201,164,92,0)}}
+.plink{display:inline-block;margin-top:12px;font-size:13px;color:var(--khaki);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.plink:hover{border-color:var(--khaki)}
+@media (prefers-reduced-motion:reduce){.dl-btn *{animation-duration:.01s!important}}
+
+.dlinks{display:flex;flex-wrap:wrap;gap:10px}
+
+/* popup CV terunduh */
+.cvpop{position:fixed;right:20px;bottom:20px;z-index:50;display:flex;align-items:center;gap:12px;max-width:min(360px,calc(100vw - 40px));padding:12px 36px 14px 12px;background:#16222e;color:var(--ink);border:3px solid var(--khaki);box-shadow:6px 6px 0 #000;transform:translateY(30px);opacity:0;overflow:hidden}
+.cvpop[hidden]{display:none}
+.cvpop.in{animation:cvin .45s steps(6) forwards}
+.cvpop.out{animation:cvout .35s ease-in forwards}
+.cvpop canvas{width:64px;height:64px;image-rendering:pixelated;flex:none;background:#27394a;border:2px solid var(--steel)}
+.cvpop-txt{display:flex;flex-direction:column;gap:6px}
+.cvpop-txt b{font-family:'Press Start 2P',monospace;font-size:11px;line-height:1.5;color:var(--khaki);font-weight:400}
+.cvpop-txt span{font-family:'JetBrains Mono',monospace;font-size:13px}
+.cvpop-x{position:absolute;top:2px;right:6px;background:none;border:0;color:var(--ink);font-size:20px;cursor:pointer;line-height:1}
+.cvpop-bar{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--khaki);transform-origin:left}
+.cvpop.in .cvpop-bar{animation:cvbar 4.2s linear forwards}
+@keyframes cvin{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes cvout{from{transform:none;opacity:1}to{transform:translateX(40px);opacity:0}}
+@keyframes cvbar{to{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){.cvpop.in,.cvpop.out{animation-duration:.01s}}

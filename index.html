@@ -25,6 +25,14 @@
   <button id="skip" class="skip"></button>
 </section>
 
+<!-- ===== CV DOWNLOADED POPUP ===== -->
+<div id="cvpop" class="cvpop" role="status" aria-live="polite" hidden>
+  <canvas id="cvchar" width="64" height="64" aria-hidden="true"></canvas>
+  <div class="cvpop-txt"><b id="cvpop-t"></b><span id="cvpop-d"></span></div>
+  <button class="cvpop-x" id="cvpop-x" aria-label="Close">×</button>
+  <i class="cvpop-bar"></i>
+</div>
+
 <!-- ===== SITE ===== -->
 <div id="site">
   <nav class="nav" id="nav">
@@ -56,7 +64,7 @@
       </p>
       <div class="cta">
         <a class="btn" href="#ops"><span data-lang="en">See my work</span><span data-lang="id">Lihat pekerjaan</span></a>
-        <button class="btn ghost copy-btn" id="copy" data-email="sinagaandreas95@gmail.com"></button>
+        <a class="btn ghost dl-btn" id="dl" href="CV_Andreas_Hasiholan_Sinaga.pdf" download="CV_Andreas_Hasiholan_Sinaga.pdf"><span class="dl-fill"></span><svg class="dl-ico" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="dl-arrow" d="M12 4v11M7 11l5 5 5-5"/><path class="dl-tray" d="M5 20h14"/><path class="dl-check" d="M5 13l4.5 4.5L19 7"/></svg><span class="dl-label" id="dl-label"></span></a>
       </div>
     </div>
     <div class="term" aria-label="Terminal animation">
@@ -83,7 +91,7 @@
 
   <section id="ops" class="wrap">
     <p class="kicker mono">// daily work</p>
-    <h3 class="h2"><span data-lang="en">Five things I run at Danamon.</span><span data-lang="id">Lima hal yang saya kerjakan di Danamon.</span></h3>
+    <h3 class="h2"><span data-lang="en">Five things I run at My Current Office.</span><span data-lang="id">Lima hal yang saya kerjakan di Danamon.</span></h3>
     <div class="ops rv">
       <div class="tabs" role="tablist" aria-label="Responsibilities">
         <button class="tab" role="tab" data-i="0" aria-selected="true"><span class="mono">01</span><span>Stock Opname</span></button>
@@ -179,12 +187,15 @@
             <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="3" y="2" width="10" height="4" fill="#5b6e7e"/><rect x="3" y="7" width="10" height="4" fill="#5b6e7e"/><rect x="3" y="12" width="10" height="2" fill="#5b6e7e"/><rect class="led" x="5" y="3" width="1" height="1" fill="#6f8a55"/><rect class="led l2" x="5" y="8" width="1" height="1" fill="#6f8a55"/><rect class="led l3" x="5" y="13" width="1" height="1" fill="#b8582e"/><rect x="8" y="3" width="4" height="1" fill="#16222e"/><rect x="8" y="8" width="4" height="1" fill="#16222e"/></svg>
           </span>
           <span class="dmeta"><span class="dlabel mono">A2</span><span class="dtitle"><span data-lang="en">Papers & Patent</span><span data-lang="id">Paper & Paten</span></span></span>
-          <span class="dcount mono"><span data-lang="en">3 files</span><span data-lang="id">3 berkas</span></span>
+          <span class="dcount mono"><span data-lang="en">2 links</span><span data-lang="id">2 link</span></span>
           <span class="handle" aria-hidden="true"></span>
         </button>
         <div class="drawer-body" id="dr1"><div class="drawer-inner">
-          <p><span data-lang="en">Two IEEE papers on color vision deficiency and one registered patent, Color AID.</span><span data-lang="id">Dua paper IEEE tentang color vision deficiency dan satu paten terdaftar, Color AID.</span></p>
-          <a class="btn-sm" href="works.html?type=paper"><span data-lang="en">Open papers →</span><span data-lang="id">Buka paper →</span></a>
+          <p><span data-lang="en">Two IEEE papers on color vision deficiency.</span><span data-lang="id">Dua paper IEEE tentang color vision deficiency.</span></p>
+          <div class="dlinks">
+            <a class="btn-sm" href="https://ieeexplore.ieee.org/document/11399518/metrics#metrics" target="_blank" rel="noopener"><span data-lang="en">IEEE paper 1 ↗</span><span data-lang="id">Paper IEEE 1 ↗</span></a>
+            <a class="btn-sm" href="https://ieeexplore.ieee.org/document/11405405" target="_blank" rel="noopener"><span data-lang="en">IEEE paper 2 ↗</span><span data-lang="id">Paper IEEE 2 ↗</span></a>
+          </div>
         </div></div>
       </div>
 
@@ -199,7 +210,7 @@
         </button>
         <div class="drawer-body" id="dr2"><div class="drawer-inner">
           <p><span data-lang="en">My bachelor thesis in Computer Engineering, Telkom University.</span><span data-lang="id">Skripsi S1 Computer Engineering, Telkom University.</span></p>
-          <a class="btn-sm" href="works.html?type=skripsi"><span data-lang="en">Open thesis →</span><span data-lang="id">Buka skripsi →</span></a>
+          <a class="btn-sm" href="files/skripsi.pdf" target="_blank" rel="noopener"><span data-lang="en">Open thesis ↗</span><span data-lang="id">Buka skripsi ↗</span></a>
         </div></div>
       </div>
 
@@ -252,8 +263,8 @@
     <p class="kicker mono">// research & patent</p>
     <h3 class="h2"><span data-lang="en">Accessibility and color.</span><span data-lang="id">Aksesibilitas dan warna.</span></h3>
     <div class="grid">
-      <article class="card rv"><time class="mono">IEEE · Mar 2026</time><h4>Bridging Accessibility Gaps</h4><p><span data-lang="en">A color detection app with real-time voice feedback for Colour Vision Deficiency. 90–96% accuracy and an 81.6% user satisfaction score.</span><span data-lang="id">Aplikasi deteksi warna dengan suara real-time untuk Colour Vision Deficiency. Akurasi 90–96% dan kepuasan pengguna 81,6%.</span></p></article>
-      <article class="card rv"><time class="mono">IEEE · Feb 2026</time><h4>Continuous CVD Severity Simulation</h4><p><span data-lang="en">A continuous CVD simulation based on Machado's LMS-RGB transformation, evaluated with CIEDE2000.</span><span data-lang="id">Simulasi CVD kontinu berbasis transformasi LMS-RGB Machado, dievaluasi dengan CIEDE2000.</span></p></article>
+      <article class="card rv"><time class="mono">IEEE · Mar 2026</time><h4>Bridging Accessibility Gaps</h4><p><span data-lang="en">A color detection app with real-time voice feedback for Colour Vision Deficiency. 90–96% accuracy and an 81.6% user satisfaction score.</span><span data-lang="id">Aplikasi deteksi warna dengan suara real-time untuk Colour Vision Deficiency. Akurasi 90–96% dan kepuasan pengguna 81,6%.</span></p><a class="plink mono" href="https://ieeexplore.ieee.org/document/11405405" target="_blank" rel="noopener"><span data-lang="en">View on IEEE Xplore</span><span data-lang="id">Lihat di IEEE Xplore</span> ↗</a></article>
+      <article class="card rv"><time class="mono">IEEE · Feb 2026</time><h4>Continuous CVD Severity Simulation</h4><p><span data-lang="en">A continuous CVD simulation based on Machado's LMS-RGB transformation, evaluated with CIEDE2000.</span><span data-lang="id">Simulasi CVD kontinu berbasis transformasi LMS-RGB Machado, dievaluasi dengan CIEDE2000.</span></p><a class="plink mono" href="https://ieeexplore.ieee.org/document/11399518/metrics#metrics" target="_blank" rel="noopener"><span data-lang="en">View on IEEE Xplore</span><span data-lang="id">Lihat di IEEE Xplore</span> ↗</a></article>
       <article class="card rv"><time class="mono"><span data-lang="en">Patent · Aug 2025</span><span data-lang="id">Paten · Agu 2025</span></time><h4>Color AID</h4><p><span data-lang="en">A mobile app that helps people with color blindness with real-time color detection and color vision tests.</span><span data-lang="id">Aplikasi mobile untuk penyandang buta warna lewat deteksi warna real-time dan tes buta warna.</span></p></article>
       <article class="card rv"><time class="mono"><span data-lang="en">Certification · Sep 2025</span><span data-lang="id">Sertifikasi · Sep 2025</span></time><h4>Data Analysis Fullstack Bootcamp</h4><p><span data-lang="en">MySkill, Batch 24. Presented at ICATEI 2025 and BTS-I2C 2025.</span><span data-lang="id">MySkill, Batch 24. Presentasi di ICATEI 2025 dan BTS-I2C 2025.</span></p></article>
     </div>
@@ -292,11 +303,12 @@
       </div>
     </div>
     <div class="wrap foot-bottom">
-      <span class="mono">© 2026 Frida Putriassa with love.</span>
+      <span class="mono">© 2026 Andreas Hasiholan Sinaga</span>
             <a href="#top" class="totop mono"><span data-lang="en">Back to top ↑</span><span data-lang="id">Kembali ke atas ↑</span></a>
     </div>
   </footer>
 </div>
+<script src="cv-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

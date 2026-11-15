@@ -8,7 +8,7 @@ en:{
   hint_scan:"Stock opname time! Click the 3 blinking boxes.",
   hint_prog:"Verified {n}/3",
   hint_done:"All matched! Laptop placed on the shelf. Gate open.",
-  enter:"Enter Portfolio", skip:"skip", copy:"Copy email", copied:"Copied ✓",
+  enter:"Enter Portfolio", skip:"skip", dl:"Download resume", dling:"Downloading…", dled:"Downloaded", cvt:"Resume downloaded!", cvd:"Check your Downloads folder.",
   pick_t:"Pick a pin", pick_d:"Click any pin on the map to see what happens there.",
   roles:["IT Asset Management","Stock Opname Specialist","Software Engineer","Accessibility Researcher"],
   term:["$ stock-opname --scope all","» scanning branch-network ...","» scanning regional-office ...","» scanning head-office ...","✓ reconcile software 2021–2026","✓ 1,200 assets validated","$ jira --sla-check","✓ all tickets within SLA","$ _"],
@@ -30,7 +30,7 @@ id:{
   hint_scan:"Waktunya stock opname! Klik 3 box yang berkedip.",
   hint_prog:"Tervalidasi {n}/3",
   hint_done:"Semua cocok! Laptop ditaruh di rak. Pintu gudang terbuka.",
-  enter:"Masuk ke Portfolio", skip:"lewati", copy:"Salin email", copied:"Tersalin ✓",
+  enter:"Masuk ke Portfolio", skip:"lewati", dl:"Unduh resume", dling:"Mengunduh…", dled:"Terunduh", cvt:"Resume berhasil diunduh!", cvd:"Cek folder Downloads kamu.",
   pick_t:"Pilih satu pin", pick_d:"Klik pin mana pun di peta untuk melihat apa yang terjadi di sana.",
   roles:["Pengelola Aset IT","Spesialis Stock Opname","Software Engineer","Peneliti Aksesibilitas"],
   term:["$ stock-opname --scope all","» memindai jaringan cabang ...","» memindai kantor regional ...","» memindai kantor pusat ...","✓ rekonsiliasi software 2021–2026","✓ 1.200 aset tervalidasi","$ jira --sla-check","✓ semua tiket dalam SLA","$ _"],
@@ -129,17 +129,18 @@ frame();
 
 /* ===== Masuk ke situs ===== */
 let siteOpen=false,termTimer=null,selectedPin=null;
-function openSite(){
+function openSite(restore){
   siteOpen=true;
+  try{sessionStorage.setItem('siteOpened','1')}catch(e){}
   $('#launch').classList.add('hide');
   $('#site').classList.add('on');
   document.body.classList.remove('locked');
-  window.scrollTo(0,0);
+  if(restore!==true)window.scrollTo(0,0);
   countUp();
   runTerminal();
 }
-enter.addEventListener('click',openSite);
-skip.addEventListener('click',openSite);
+enter.addEventListener('click',()=>openSite());
+skip.addEventListener('click',()=>openSite());
 
 /* ===== Hero: ketik peran ===== */
 let roleR=0,roleI=0,roleDel=false;
@@ -266,14 +267,55 @@ $$('.pin').forEach(p=>{
 });
 renderPin();
 
-/* ===== Salin email ===== */
-let copyTimer=null;
-$('#copy').addEventListener('click',e=>{
+/* ===== Unduh resume ===== */
+let dlTimers=[],popTimer=null,popFrame=null;
+const CV_URL='CV_Andreas_Hasiholan_Sinaga.pdf';
+function saveFile(){
+  const name=CV_URL;
+  const trigger=href=>{const l=document.createElement('a');l.href=href;l.download=name;l.rel='noopener';l.style.display='none';document.body.appendChild(l);l.click();l.remove()};
+  if(window.CV_B64){
+    try{
+      const bin=atob(window.CV_B64),u8=new Uint8Array(bin.length);
+      for(let k=0;k<bin.length;k++)u8[k]=bin.charCodeAt(k);
+      const url=URL.createObjectURL(new Blob([u8],{type:'application/octet-stream'}));
+      trigger(url);setTimeout(()=>URL.revokeObjectURL(url),10000);return;
+    }catch(err){}
+  }
+  trigger(CV_URL);
+}
+function drawCvChar(f){
+  const c=$('#cvchar'),g=c.getContext('2d');g.clearRect(0,0,64,64);
+  const s=3,bob=f?-s:0;
+  sprite(g,4,6+bob,s,f);
+  /* CV kertas di tangan kanan */
+  g.fillStyle='#ece3cf';g.fillRect(38,18+bob,18,24);
+  g.fillStyle='#c9a45c';g.fillRect(41,22+bob,12,3);
+  g.fillStyle='#8fa3b3';g.fillRect(41,28+bob,12,2);g.fillRect(41,32+bob,12,2);g.fillRect(41,36+bob,8,2);
+  g.fillStyle='#6f8a55';g.fillRect(50,8+bob,3,3);g.fillRect(53,5+bob,3,3);g.fillRect(56,2+bob,3,3);g.fillRect(47,5+bob,3,3);
+}
+function showCvPop(){
+  const p=$('#cvpop');
+  $('#cvpop-t').textContent=tr('cvt');$('#cvpop-d').textContent=tr('cvd');
+  clearTimeout(popTimer);clearInterval(popFrame);
+  p.hidden=false;p.classList.remove('out');void p.offsetWidth;p.classList.add('in');
+  let f=0;drawCvChar(0);popFrame=setInterval(()=>{f^=1;drawCvChar(f)},350);
+  popTimer=setTimeout(hideCvPop,4200);
+}
+function hideCvPop(){
+  const p=$('#cvpop');clearTimeout(popTimer);
+  p.classList.remove('in');p.classList.add('out');
+  setTimeout(()=>{if(p.classList.contains('out')){p.hidden=true;clearInterval(popFrame)}},400);
+}
+$('#cvpop-x').addEventListener('click',hideCvPop);
+$('#dl').addEventListener('click',e=>{
+  e.preventDefault();
   const b=e.currentTarget;
-  navigator.clipboard?.writeText(b.dataset.email);
-  b.dataset.copied='1';b.textContent=tr('copied');
-  clearTimeout(copyTimer);
-  copyTimer=setTimeout(()=>{delete b.dataset.copied;b.textContent=tr('copy')},1600);
+  if(b.dataset.state==='busy')return;
+  saveFile(b);
+  dlTimers.forEach(clearTimeout);dlTimers=[];
+  b.dataset.state='busy';$('#dl-label').textContent=tr('dling');
+  dlTimers.push(setTimeout(()=>{b.dataset.state='done';$('#dl-label').textContent=tr('dled');showCvPop()},1100));
+  dlTimers.push(setTimeout(()=>{delete b.dataset.state;$('#dl-label').textContent=tr('dl')},3400));
 });
 
 /* ===== Jam footer (WIB) ===== */
@@ -290,7 +332,7 @@ function setLang(l){
   $$('.lang-btn').forEach(b=>{const on=b.dataset.set===l;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
   $('#enter').textContent=tr('enter');
   $('#skip').textContent=tr('skip');
-  const c=$('#copy');c.textContent=c.dataset.copied?tr('copied'):tr('copy');
+  const d=$('#dl'),st=d.dataset.state;$('#dl-label').textContent=tr(st==='busy'?'dling':st==='done'?'dled':'dl');
   setHint();
   renderPin();
   clockTick();
@@ -324,3 +366,26 @@ $$('.drawer').forEach(dr=>{
     if(willOpen){dr.classList.add('open');head.setAttribute('aria-expanded','true')}
   });
 });
+
+/* ===== Kembali dari halaman lain: lewati launch page =====
+   Launch page hanya muncul saat pertama buka / refresh. */
+(function(){
+  let reload=false,opened=false,y=0;
+  try{
+    const nav=performance.getEntriesByType('navigation')[0];
+    reload=!!nav&&nav.type==='reload';
+    opened=sessionStorage.getItem('siteOpened')==='1';
+    y=parseInt(sessionStorage.getItem('siteScroll')||'0',10)||0;
+    if(reload){sessionStorage.removeItem('siteOpened');sessionStorage.removeItem('siteScroll');opened=false}
+  }catch(e){}
+  addEventListener('pagehide',()=>{
+    try{if(siteOpen)sessionStorage.setItem('siteScroll',String(Math.round(scrollY)))}catch(e){}
+  });
+  if(opened&&!reload){
+    openSite(true);
+    requestAnimationFrame(()=>{
+      if(location.hash){const t=document.querySelector(location.hash);if(t){t.scrollIntoView();return}}
+      window.scrollTo(0,y);
+    });
+  }
+})();
